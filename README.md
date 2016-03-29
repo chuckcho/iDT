@@ -1,7 +1,7 @@
 ### Compiling ###
 
 In order to compile the improved trajectories code, you need to have the following libraries installed in your system:
-* OpenCV library (tested with OpenCV-2.4.2)
+* OpenCV library (tested with OpenCV-2.4.11)
 * ffmpeg library (tested with ffmpeg-0.11.1)
 
 Currently, the libraries are the latest versions. In case they will be out of date, you can also find them on our website: http://lear.inrialpes.fr/people/wang/improved_trajectories
