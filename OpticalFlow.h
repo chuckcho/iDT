@@ -413,7 +413,7 @@ void FarnebackPolyExpPyr(const Mat& img, std::vector<Mat>& poly_exp_pyr,
 {
     Mat fimg;
 
-    for(int k = 0; k < poly_exp_pyr.size(); k++)
+    for(unsigned int k = 0; k < poly_exp_pyr.size(); k++)
     {
         double sigma = (fscales[k]-1)*0.5;
         int smooth_sz = cvRound(sigma*5)|1;

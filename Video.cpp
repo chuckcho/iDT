@@ -36,7 +36,7 @@ int main( int argc, char** argv )
 
 	while( true ) {
 		IplImage* frame = 0;
-		int i, j, c;
+		int c;
 
 		// get a new frame
 		frame = cvQueryFrame( capture );

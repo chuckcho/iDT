@@ -76,7 +76,7 @@ void GetDesc(const DescMat* descMat, RectInfo& rect, DescInfo descInfo, std::vec
 {
 	int dim = descInfo.dim;
 	int nBins = descInfo.nBins;
-	int height = descMat->height;
+	//int height = descMat->height;
 	int width = descMat->width;
 
 	int xStride = rect.width/descInfo.nxCells;
@@ -200,7 +200,7 @@ bool IsCameraMotion(std::vector<Point2f>& disp)
 {
 	float disp_max = 0;
 	float disp_sum = 0;
-	for(int i = 0; i < disp.size(); ++i) {
+	for(unsigned int i = 0; i < disp.size(); ++i) {
 		float x = disp[i].x;
 		float y = disp[i].y;
 		float temp = sqrt(x*x + y*y);
@@ -214,7 +214,7 @@ bool IsCameraMotion(std::vector<Point2f>& disp)
 		return false;
 
 	float disp_norm = 1./disp_sum;
-	for (int i = 0; i < disp.size(); ++i)
+	for (unsigned int i = 0; i < disp.size(); ++i)
 		disp[i] *= disp_norm;
 
 	return true;
@@ -237,7 +237,7 @@ void DenseSample(const Mat& grey, std::vector<Point2f>& points, const double qua
 	int x_max = min_distance*width;
 	int y_max = min_distance*height;
 
-	for(int i = 0; i < points.size(); i++) {
+	for(unsigned int i = 0; i < points.size(); i++) {
 		Point2f point = points[i];
 		int x = cvFloor(point.x);
 		int y = cvFloor(point.y);
@@ -375,7 +375,7 @@ void InitMaskWithBox(Mat& mask, std::vector<BoundBox>& bbs)
 			m[j] = 1;
 	}
 
-	for(int k = 0; k < bbs.size(); k++) {
+	for(unsigned int k = 0; k < bbs.size(); k++) {
 		BoundBox& bb = bbs[k];
 		for(int i = cvCeil(bb.TopLeft.y); i <= cvFloor(bb.BottomRight.y); i++) {
 			uchar* m = mask.ptr<uchar>(i);
@@ -534,7 +534,7 @@ void MatchFromFlow(const Mat& prev_grey, const Mat& flow, std::vector<Point2f>& 
 	if(prev_pts.size() == 0)
 		return;
 
-	for(int i = 0; i < prev_pts.size(); i++) {
+	for(unsigned int i = 0; i < prev_pts.size(); i++) {
 		int x = std::min<int>(std::max<int>(cvRound(prev_pts[i].x), 0), width-1);
 		int y = std::min<int>(std::max<int>(cvRound(prev_pts[i].y), 0), height-1);
 

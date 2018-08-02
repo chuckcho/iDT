@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 	int init_counter = 0; // indicate when to detect new feature points
 	while(true) {
 		Mat frame;
-		int i, j, c;
+		int i, c;
 
 		// get a new frame
 		capture >> frame;
@@ -103,7 +103,7 @@ int main(int argc, char** argv)
 			frame.copyTo(image);
 			cvtColor(image, prev_grey, CV_BGR2GRAY);
 
-			for(int iScale = 0; iScale < scale_num; iScale++) {
+			for(int iScale = 0; iScale < (signed)scale_num; iScale++) {
 				if(iScale == 0)
 					prev_grey.copyTo(prev_grey_pyr[0]);
 				else
@@ -115,7 +115,7 @@ int main(int argc, char** argv)
 
 				// save the feature points
 				std::list<Track>& tracks = xyScaleTracks[iScale];
-				for(i = 0; i < points.size(); i++)
+				for(i = 0; i < (signed)points.size(); i++)
 					tracks.push_back(Track(points[i], trackInfo, hogInfo, hofInfo, mbhInfo));
 			}
 
@@ -271,13 +271,13 @@ int main(int argc, char** argv)
 
 			DenseSample(grey_pyr[iScale], points, quality, min_distance);
 			// save the new feature points
-			for(i = 0; i < points.size(); i++)
+			for(i = 0; i < (signed)points.size(); i++)
 				tracks.push_back(Track(points[i], trackInfo, hogInfo, hofInfo, mbhInfo));
 		}
 
 		init_counter = 0;
 		grey.copyTo(prev_grey);
-		for(i = 0; i < scale_num; i++) {
+		for(i = 0; i < (signed)scale_num; i++) {
 			grey_pyr[i].copyTo(prev_grey_pyr[i]);
 			poly_pyr[i].copyTo(prev_poly_pyr[i]);
 		}
